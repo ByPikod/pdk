@@ -39,7 +39,7 @@ end
 --- @param level table Your log table.
 --- @see pi.LOG_ERROR
 --- @see pi.LOG_INFO
---- @return void
+--- @return nil
 function pi.print( text, level )
 
 	level = level or pi.LOG_INFO

@@ -1,3 +1,4 @@
+local SysTime = SysTime
 local pi = pi
 
 --- Simple lua profiler to test your code.
@@ -8,14 +9,14 @@ local pi = pi
 function pi.util.Profiler( f, try, ... )
 
     try = try or 10000
-    local s = os.clock()
+    local s = SysTime()
 
-    for i=1,100000 do
+    for i=1, try  do
 
         f(...)
 
     end
 
-    return os.clock() - s
+    return SysTime() - s
 
 end

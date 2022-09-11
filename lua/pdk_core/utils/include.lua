@@ -2,6 +2,8 @@ local pi = pi
 local include = include
 local AddCSLuaFile = AddCSLuaFile
 local file = file
+local string = string
+local ipairs = ipairs
 
 if SERVER then
 
@@ -32,38 +34,59 @@ elseif CLIENT then
 end
 
 --- Include the files in a specific directory.
+--- The realm which files will be included to is decided by their name.
+--- Prefix "cl_" for client files, "sv_" for server files and "sh_" for shared files.
+--- Directory/File will be skipped if releated callback returns True.
 --- @param directory string Directory path to include.
---- @param recursive boolean Should include sub directories too ?
---- @return void
-function pi.util.IncludeDir( directory, recursive )
+--- @param recursive boolean Should include sub directories too ? If false, shouldSkipDirectory will never be called.
+--- @param shouldSkipFile function If set, callback will be called for each file. If callback returns true, the directory will be skipped. It takes three arguments: shouldSkipFile( root, file, directoryLevel )
+--- @param shouldSkipDirectory function If set, callback will be called for each directory. If callback returns true, the file will be skipped. It takes three arguments: shouldSkipDirectory( root, directory, directoryLevel )
+--- @param directoryLevel number This is the repeat counter for recursive function. It will increase every time this function called itself.
+--- @return nil
+function pi.util.IncludeDir( directory, recursive, shouldSkipFile, shouldSkipDirectory, directoryLevel )
+    
+    -- Set directory level if not set.
+    directoryLevel = directoryLevel or 0 
 
-    directory = directory .. "/"
-
-    local files, directories = file.Find( directory .. "*", "LUA" )
+    -- List the files.
+    local files, directories = file.Find( directory .. "/*", "LUA" )
 
     for _, v in ipairs( files ) do
 
         if string.EndsWith( v, ".lua" ) then
 
-            local file = directory .. v
 
-            local prefix = string.lower( string.Left( File, 3 ) ):lower()
+            if shouldSkipFile and shouldSkipFile( directory, v, directoryLevel ) then goto skip_file end
+
+            local prefix = string.lower( string.Left( v, 3 ) ):lower()
+            local file_name = directory .. "/" .. v
 
             if prefix == "sv_" then
-                pi.util.IncludeServer( file )
+                pi.util.IncludeServer( file_name )
             elseif prefix == "cl_" then
-                pi.util.IncludeClient( file )
+                pi.util.IncludeClient( file_name )
             elseif prefix == "sh_" then
-                pi.util.Include( file )
+                pi.util.Include( file_name )
             end
+
+            ::skip_file::
 
         end
 
     end
 
     if not recursive then return end
+    
+    directoryLevel = directoryLevel + 1 -- Increase one
     for _, v in ipairs( directories ) do
-        pi.util.IncludeDir( directory .. v )
+
+        -- Call the callback function
+        if shouldSkipDirectory and shouldSkipDirectory( directory, v, directoryLevel ) then goto skip_folder end
+        
+        pi.util.IncludeDir( directory .. "/" .. v, true, shouldSkipFile, shouldSkipDirectory, directoryLevel )
+
+        ::skip_folder::
+
     end
 
 end
