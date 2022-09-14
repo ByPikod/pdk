@@ -1,5 +1,8 @@
 .idea/
 .vscode/
-lua/pdk/
+lua/pdk/werewolf
+lua/pdk/vampire
+lua/pdk/revive
+lua/pdk/unvan.lua
 materials/
 assets/

@@ -35,8 +35,12 @@ function pi.plugin:Register( object )
 
     table.insert( self._plugins, object )
     
-    for _, v in ipairs( object.Files ) do
-        resource.AddFile( v )
+    if object.Assets then
+        
+        for _, v in ipairs( object.Assets ) do
+            resource.AddFile( v )
+        end
+
     end
 
     return object

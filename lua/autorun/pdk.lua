@@ -27,7 +27,7 @@ local print = print
 --- Pretty useful set of helper functions.
 pi.util = pi.util or {}
 
-pi.version = 2
+pi.version = 3
 
 --- Load the library.
 --- @return nil
@@ -50,6 +50,7 @@ function pi.Load()
     pi.util.Include( "pdk_core/meta/entity/bones.lua" )
     pi.util.Include( "pdk_core/meta/player/lockweapon.lua" )
     pi.util.Include( "pdk_core/meta/player/ignorekeys.lua" )
+    pi.util.Include( "pdk_core/meta/player/other.lua" )
 
     pi.print( "Library activated.")
 
@@ -61,8 +62,8 @@ function pi.Load()
         -- Include Files
         function( root, file, level )
             
-            -- Not include if directory level is not 1 or file's name is not plugin.
-            if level ~= 1 or file:lower() ~= "plugin.lua" then
+            -- Not include if directory level is 1 and file's name is not plugin.
+            if level == 1 and file:lower() ~= "plugin.lua" then
                 return true
             end
             
@@ -81,6 +82,7 @@ function pi.Load()
         end,
         function( root, directory, level )
 
+            -- We don't want to fetch sub directories.
             if level > 1 then
                 return true
             end

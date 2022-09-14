@@ -7,7 +7,7 @@ local meta = FindMetaTable( "Player" )
 hook.Add( "StartCommand", "pdk.ignorekeys", function( ply, mv )
 
     local ignore = ply.pdk_ignore
-    if not ignore then return end
+    if not ignore or ignore == 0 then return end
     
     --[[
 
@@ -63,7 +63,7 @@ if CLIENT then
             return
         end
         
-        if keys == 0 then keys = nil end
+        if keys == nil then keys = 0 end
         
         self.pdk_ignore = keys
 
@@ -78,7 +78,7 @@ else
     --- @return nil
     function meta:IgnoreKeys( keys, networking )
 
-        if keys == 0 then keys = nil end
+        if keys == nil then keys = 0 end
         self.pdk_ignore = keys
 
         if not networking then return end

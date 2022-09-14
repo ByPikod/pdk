@@ -48,13 +48,13 @@ else
     end )
 
     --- Prevent the player from switching between weapons.
-    --- @param networking bool Should the player's computer also perform the action ( Default=true ) ?
+    --- @param networking bool Should the player's computer also perform the action ?
     --- @return nil
     function meta:LockWeapon( networking )
 
         self.pdk_weaponsLocked = true
         
-        if not networking then
+        if networking then
             
             net.Start( "pdk.core.lockweapon" )
             net.WriteBool( true )
@@ -65,13 +65,13 @@ else
     end
 
     --- Allow the player to switching between weapons.
-    --- @param networking bool Should the player's computer also perform the action ( Default=true ) ?
+    --- @param networking bool Should the player's computer also perform the action ?
     --- @return nil
     function meta:UnlockWeapon( networking )
         
         self.pdk_weaponsLocked = false
 
-        if not networking then
+        if networking then
             
             net.Start( "pdk.core.lockweapon" )
             net.WriteBool( false )
