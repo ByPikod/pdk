@@ -1,5 +1,5 @@
 .idea/
 .vscode/
 lua/pdk/
-materials/
+materials/pdk_external/
 assets/

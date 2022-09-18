@@ -15,6 +15,7 @@
 		"readme",
 		"readme.*",
 		"lua/pdk/*",
-		"assets/*"
+		"assets/*",
+		"materials/pdk_external/*"
 	]
 }
