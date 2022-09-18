@@ -1,3 +1,4 @@
+local LocalPlayer = LocalPlayer
 local hook = hook
 local net = net
 

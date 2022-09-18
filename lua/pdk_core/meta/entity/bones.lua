@@ -1,5 +1,8 @@
 local meta = FindMetaTable( "Entity" )
 
+local Vector = Vector
+local Angle = Angle
+
 --- Reset bone scale, angles and positions.
 --- @return nil
 function meta:ResetBonePositions( networking )

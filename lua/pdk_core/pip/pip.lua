@@ -18,9 +18,9 @@ local meta = FindMetaTable("PIP")
 --- Register your plugin table.
 --- @param object table Plugin table.
 --- @return table Plugin table
-function pi.plugin:Register( object )
+function pi.plugin.Register( object )
 
-    self = self or pi.plugin
+    local self = pi.plugin
 
     if not object.Name then
         error( "An error has occurred while registering plugin: Plugin table have no \"Name\" field." )
@@ -49,9 +49,9 @@ end
 
 --- Returns plugin list.
 --- @return table Plugins table
-function pi.plugin:GetPlugins()
+function pi.plugin.GetPlugins()
 
-    self = self or pi.plugin
+    local self = pi.plugin
     return self._plugins
 
 end
@@ -59,9 +59,9 @@ end
 --- Returns plugin by its name
 --- @param pluginName string
 --- @return table Plugin table
-function pi.plugin:GetPluginByName( pluginName )
+function pi.plugin.GetPluginByName( pluginName )
 
-    self = self or pi.plugin
+    local self = pi.plugin
     for _, v in ipairs( self._plugins ) do
 
         if v.Name == pluginName then

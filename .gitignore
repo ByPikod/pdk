@@ -3,6 +3,8 @@
 lua/pdk/werewolf
 lua/pdk/vampire
 lua/pdk/revive
+lua/pdk/sitanywhere
 lua/pdk/unvan.lua
+lua/pdk/level.lua
 materials/
 assets/

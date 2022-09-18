@@ -17,7 +17,7 @@ pi.level.Config = {
 
 local config = pi.level.Config
 
-pi.plugin:Register( pi.level )
+pi.plugin.Register( pi.level )
 
 local meta = FindMetaTable( "Player" )
 
