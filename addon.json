@@ -1,0 +1,20 @@
+{
+	"title"		:	"My Server Content",
+	"type"		:	"ServerContent",
+	"tags"		:	[ "roleplay", "realism" ],
+	"ignore"	:
+	[
+		".idea/*",
+		".vscode/*",
+		".gitignore*",
+		".vs/",
+		"LICENSE",
+		"LICENSE.*",
+		"README",
+		"README.*",
+		"readme",
+		"readme.*",
+		"lua/pdk/*",
+		"assets/*"
+	]
+}
