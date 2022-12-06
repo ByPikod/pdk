@@ -47,7 +47,8 @@ function pi.Load()
     pi.util.Include( "pdk_core/pip/utils.lua" )
 
     -- Pi Meta Table Utils
-    pi.util.Include( "pdk_core/meta/entity/bones.lua" )
+    pi.util.Include( "pdk_core/meta/entity/bonereset.lua" )
+    pi.util.Include( "pdk_core/meta/entity/bonemanipulate.lua" )
     pi.util.Include( "pdk_core/meta/player/lockweapon.lua" )
     pi.util.Include( "pdk_core/meta/player/ignorekeys.lua" )
     pi.util.Include( "pdk_core/meta/player/other.lua" )
@@ -71,7 +72,7 @@ function pi.Load()
             xpcall( 
                 pi.util.Include,
                 function( err )
-                    pi.print( "An error has ocurred while plugin file including: "..file, pi.LOG_ERROR )
+                    pi.print( "An error has ocurred while plugin file including: " .. file, pi.LOG_ERROR )
                     print( err )
                 end,
                 root .. "/" .. file 

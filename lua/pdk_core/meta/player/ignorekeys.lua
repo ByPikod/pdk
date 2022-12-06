@@ -8,39 +8,6 @@ hook.Add( "StartCommand", "pdk.ignorekeys", function( ply, mv )
 
     local ignore = ply.pdk_ignore
     if not ignore or ignore == 0 then return end
-    
-    --[[
-
-        How it works ? Example:
-
-        a = jump
-        b = sprint
-        c = attack 1
-        d = attack 2
-
-        keys:            a b c d
-        user pressed:    1 1 0 0
-        will ignored:    0 1 0 0
-
-        User pressed jump and sprint buttons at the same time. If we want to ignore
-        sprint key, we should find non-intersecting variables.
-
-        bit not operator:
-
-        keys:            a b c d
-        will ignored:    0 1 0 0
-        bit not:         1 0 1 1      
-
-        bit and operator:
-
-        keys:            a b c d
-        user pressed:    1 1 0 0
-        will ignored:    1 0 1 1
-        bit and:         1 0 0 0
-
-        Now we only have the non-intersecting keys.
-
-    ]]
     mv:SetButtons( bit.band( mv:GetButtons(), bit.bnot( ignore ) ) )
 
 end )

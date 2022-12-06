@@ -1,19 +1,17 @@
 {
-	"title"		:	"My Server Content",
-	"type"		:	"ServerContent",
-	"tags"		:	[ "roleplay", "realism" ],
+	"title"		:	"GMOD - Pikod's Development Kit",
+	"type"		:	"tool",
+	"tags"		:	[ "fun", "realism" ],
 	"ignore"	:
 	[
+		"addon.json",
 		".idea/*",
 		".vscode/*",
-		".gitignore*",
-		".vs/",
+		".git/*",
+		".gitignore",
 		"LICENSE",
 		"LICENSE.*",
-		"README",
-		"README.*",
-		"readme",
-		"readme.*",
+		"README.md",
 		"lua/pdk/*",
 		"assets/*",
 		"materials/pdk_external/*"
