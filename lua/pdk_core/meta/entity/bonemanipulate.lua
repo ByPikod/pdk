@@ -21,9 +21,6 @@ local function applyBoneChangesTable( entity, boneChanges )
 		entity:ManipulateBoneScale( k, v, false )
 	end
 
-	print(entity)
-	PrintTable(boneChanges)
-
 end
 
 if CLIENT then 
